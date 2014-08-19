@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Breweries OnTheGo</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/themes/pale.min.css" />
+  <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+  <script src="js/jquery-1.10.2.min.js"></script>
+  <script src="js/jquery.mobile-1.4.2.min.js"></script>
+  <script type="text/javascript" src="js/ajax.js"></script>
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+	<div id="firstpage" data-role="page" data-theme="a">
+    <div id="header" data-role="header">
+        <h2>Breweries OnTheGo</h2>
+        <a href="index.html" data-role="button" rel="external" data-icon="home" data-iconpos="notext">Homepage</a>
+    </div>
+    <div class="ui-field-contain">
+      <select id="stateSelect" name="stateSelect" data-native-menu="false" onchange="getStateResults();">
+        <option value="choose-one" data-placeholder="true">Step 1: Choose your state</option>
+        <option value="Alabama">Alabama</option>
+        <option value="Alaska">Alaska</option>
+        <option value="Arizona">Arizona</option>
+        <option value="Arkansas">Arkansas</option>
+        <option value="California">California</option>
+        <option value="Colorado">Colorado</option>
+        <option value="Connecticut">Connecticut</option>
+        <option value="Delaware">Delaware</option>
+        <option value="Florida">Florida</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Hawaii">Hawaii</option>
+        <option value="Idaho">Idaho</option>
+        <option value="Illinois">Illinois</option>
+        <option value="Indiana">Indiana</option>
+        <option value="Iowa">Iowa</option>
+        <option value="Kansas">Kansas</option>
+        <option value="Kentucky">Kentucky</option>
+        <option value="Louisiana">Louisiana</option>
+        <option value="Maine">Maine</option>
+        <option value="Maryland">Maryland</option>
+        <option value="Massachusetts">Massachusetts</option>
+        <option value="Michigan">Michigan</option>
+        <option value="Minnesota">Minnesota</option>
+        <option value="Mississippi">Mississippi</option>
+        <option value="Missouri">Missouri</option>
+        <option value="Montana">Montana</option>
+        <option value="Nebraska">Nebraska</option>
+        <option value="Nevada">Nevada</option>
+        <option value="New%20Hampshire">New Hampshire</option>
+        <option value="New%20Jersey">New Jersey</option>
+        <option value="New%20Mexico">New Mexico</option>
+        <option value="New%20York">New York</option>
+        <option value="North%20Carolina">North Carolina</option>
+        <option value="North%20Dakota">North Dakota</option>
+        <option value="Ohio">Ohio</option>
+        <option value="Oklahoma">Oklahoma</option>
+        <option value="Oregon">Oregon</option>
+        <option value="Pennsylvania">Pennsylvania</option>
+        <option value="Rhode%20Island">Rhode Island</option>
+        <option value="South%20Carolina">South Carolina</option>
+        <option value="South%20Dakota">South Dakota</option>
+        <option value="Tennessee">Tennessee</option>
+        <option value="Texas">Texas</option>
+        <option value="Utah">Utah</option>
+        <option value="Vermont">Vermont</option>
+        <option value="Virginia">Virginia</option>
+        <option value="Washington">Washington</option>
+        <option value="West Virginia">West Virginia</option>
+        <option value="Wisconsin">Wisconsin</option>
+        <option value="Wyoming">Wyoming</option>
+      </select>
+    </div>
+    <div id="search">
+      <ul>
+        <li>Step 2: Loading may take a second depending on your connection.</li>
+        <li>Step 3: Use search bar to narrow results.</li>
+      </ul>
+      <form class="ui-filterable">
+        <input type="text" id="searchbar" data-type="search" placeholder="Type here to search for a brewery" />
+      </form>
+    </div>
+    <div data-role="main" class="ui-content">
+      <div id="data" data-role="controlgroup" data-type="vertical" data-filter="true" data-input="#searchbar" data-autodividers="true" data-inset="true">
+      </div>
+    </div>
+	</div>
+</body>
+</html>

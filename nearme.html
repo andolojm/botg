@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breweries OnTheGo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/themes/pale.min.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+	<div id="firstpage" data-role="page" data-theme="a">
+    <div id="header" data-role="header">
+        <h2>Breweries OnTheGo</h2>
+        <a href="index.html" data-role="button" rel="external" data-icon="home" data-iconpos="notext">Homepage</a>
+    </div>
+    <div data-role="main" class="ui-content">
+      <div id="search">
+        <p>Breweries On The Go can use your phone's location to find breweries near you.</p>
+        <button id="auto" onclick="$('#enterLocation').fadeOut();locateMe();">Locate me</button>
+        <button id="manual" onclick="showLocationEntry();">Enter my location manually</button>
+      </div>
+      <div id="enterLocation" style="display: none;">
+        <h4>Enter search range (Miles)</h4>
+        <input type="range" name="range" id="range" value="25" min="10" max="100" />
+        <h4>Enter your Postal Code</h4>
+        <input type="number" placeholder="12345" name="address" id="address" />
+        <button onclick="getLatLng($('#address').val(),$('#range').val());">Find breweries near me</button>
+        <br /><!--SPAAAAACE-->
+        <table width="100%">
+          <tr>
+            <td colspan="2"><h4>Want more precise results? Try entering longitudinal coordinates.</h4></td>
+          </tr>
+          <tr>
+            <td width="5%"><label for="long">Long:</label></td>
+            <td><input type="text" name="long" id="long" placeholder="27.175015" /></td>
+          </tr>
+          <tr>
+            <td width="5%"><label for="lat">Lat:</label></td>
+            <td><input type="text" name="lat" id="lat" placeholder="78.042155" /></td>
+          </tr>
+          <tr>
+            <td colspan="2"><button onclick="getNearResults($('#lat').val(),$('#long').val(),$('#range').val())" name="latSubmit" id="latSubmit">Find breweries near me</button></td>
+          </tr>
+        </table>
+      </div>
+      <div id="myLocation" ><!--style="display: none;"-->
+        <!-- -->
+      </div>
+      <div id="data">
+        <!--Populated by forms above-->
+      </div>
+    </div>
+  </div>
+</body>
+</html>

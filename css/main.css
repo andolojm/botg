@@ -1,0 +1,118 @@
+#search {
+    border: 1px solid #995555;
+    padding: 0 0.5em 0.5em 0.5em;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #995555;
+    margin: 2%;
+}
+
+
+#search td {
+    width: 250px;
+}
+
+#search a {
+    color: #cc5555;
+}
+
+#floatLeft {
+    float: left;
+    width: 50%;
+    padding-right: 2%;
+}
+
+#loadGif {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 0.3em 0.3em 0.3em 0.4em;
+    border-top-left-radius: 1em;
+    box-shadow: -5px -5px 25px #995555;
+    font-size: 8px;
+}
+
+#footer a {
+    border-radius: 3px;
+    padding: 12px 7px 12px 7px;
+    white-space: normal;
+}
+
+.ui-field-contain {
+    margin: 0 5% 0 5%;
+    padding: 5px 0 0 0;
+}
+
+#data .ui-btn {
+    border-radius: 10px;
+    margin: 0.15em 0 0.15em 0;
+}
+
+#main{
+    float: auto;
+    clear: both;
+}
+
+#rightimg {
+    width: 100%;
+    margin: auto;
+}
+
+#header {
+    box-shadow: 0 0 20px #995555;
+}
+
+#state {
+    margin: 1em;
+    width: 100%;
+}
+
+#brewsMain {
+    margin: auto;
+    text-align: center;
+}
+
+#descriptionText {
+    width: 95%;
+    max-width: 500px;
+    margin: auto;
+}
+
+#data {
+    padding-bottom: 40px;
+}
+
+#bottom {
+    padding-bottom: 25px;
+}
+
+#data a {
+    white-space: normal;
+}
+
+#addFavorite {
+    margin: 5%;
+}
+
+/*Placeholder code taken from stackoverflow, quite a mess */
+*::-webkit-input-placeholder {
+    color: #cc5555;
+}
+*:-moz-placeholder {
+    /* FF 4-18 */
+    color: #cc5555;
+}
+*::-moz-placeholder {
+    /* FF 19+ */
+    color: #cc5555;
+}
+*:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #cc5555;
+}

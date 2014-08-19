@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Breweries OnTheGo</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/themes/pale.min.css" />
+  <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+  <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+  <script src="js/jquery-1.10.2.min.js"></script>
+  <script src="js/jquery.mobile-1.4.2.min.js"></script>
+  <script type="text/javascript" src="js/ajax.js"></script>
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+	<div id="favoritesPage" data-role="page" data-theme="a">
+    <div id="header" data-role="header">
+        <h2>Breweries OnTheGo</h2>
+        <a href="index.html" data-role="button" rel="external" data-icon="home" data-iconpos="notext">Homepage</a>
+    </div>
+    <div id="search">
+      <p>Displayed below is your favorites list. Start typing in the search bar and the results will narrow.</p>
+      <form class="ui-filterable">
+        <input type="text" id="searchbar" data-type="search" placeholder="Type here to search for a brewery" />
+      </form>
+    </div>
+    <div data-role="main" class="ui-content">
+      <div id="data" data-role="controlgroup" data-type="vertical" data-filter="true" data-input="#searchbar" data-autodividers="true" data-inset="true">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breweries OnTheGo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/themes/pale.min.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script>
+    $(function(ready){
+      checkGets();
+      if($_GET.hasOwnProperty('address')){
+        alert("q");
+      } else if ($_GET.hasOwnProperty('long')) {
+        if($_GET.hasOwnProperty('lat')) {
+          alert("XX");
+        } else {
+          window.alert("If not using an address, please add latitude");
+        }
+      } else if ($_GET.hasOwnProperty('lat')){
+        window.alert("If not using an address, please add longitude");
+      } else {
+        window.alert("There is an issue with the location specified. Go back using the button in the top left corner and try again. If the issue persists, please call ghostbusters.");
+      }
+    });
+    </script>
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+	<div id="firstpage" data-role="page" data-theme="a">
+    <div id="header" data-role="header">
+        <h2>Breweries OnTheGo</h2>
+        <a href="index.html" data-role="button" rel="external" data-icon="home" data-iconpos="notext">Homepage</a>
+    </div>
+    <div data-role="main" class="ui-content">
+      <div id="data">
+        
+        
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>
