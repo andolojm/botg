@@ -21,12 +21,13 @@
     <div data-role="main" class="ui-content">
       <div id="search">
         <p>Breweries On The Go can use your phone's location to find breweries near you.</p>
-        <button id="auto" onclick="$('#enterLocation').fadeOut();locateMe();">Locate me</button>
+        <button id="auto" onclick=";locateMe();">Locate me</button>
         <button id="manual" onclick="showLocationEntry();">Enter my location manually</button>
-      </div>
-      <div id="enterLocation" style="display: none;">
         <h4>Enter search range (Miles)</h4>
         <input type="range" name="range" id="range" value="25" min="10" max="100" />
+      </div>
+      <div id="enterLocation" style="display: none;">
+
         <h4>Enter your Postal Code</h4>
         <input type="number" placeholder="12345" name="address" id="address" />
         <button onclick="getLatLng($('#address').val(),$('#range').val());">Find breweries near me</button>

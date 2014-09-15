@@ -22,9 +22,9 @@ function showLocationEntry(){
 function showGeolocatedInfo(lat,lng){
 
   //create HTML elements dynamically
-  var info = '<p>Latitude: ' + lat + '<br />' + 'Longitude: ' + lng + '</p>';
-  info += '<button onclick="getNearResults(' + lat + ',' + lng + ',$(\'#range\').val());" id="submitGeo">Use This Location</button>';
-  info += '<button onclick="$(\'#myLocation\').fadeOut(1000);locateMe();" name="tryAgain" id="tryAgain">Try locating me again</button>';
+  var loc = 'Latitude: ' + lat + '&nbsp;&nbsp;|&nbsp;&nbsp;' + 'Longitude: ' + lng;
+  var info = '<button class="ui-btn" onclick="getNearResults(' + lat + ',' + lng + ',$(\'#range\').val());" id="submitGeo">' + loc + '</button>';
+  info += '<button class="ui-btn" onclick="$(\'#myLocation\').fadeOut(1000);locateMe();" name="tryAgain" id="tryAgain">Try locating me again</button>';
   
   $('#enterLocation').fadeOut(1000);
   $('#data').fadeOut(1000);
@@ -35,6 +35,8 @@ function showGeolocatedInfo(lat,lng){
 function locateMe(){
 
   //TODO: Why is onSuccess a variable and onError a fcn?
+
+  $('#enterLocation').fadeOut();
 
   //position object contains GPS coordinates
   var onSuccess = function(position) {
@@ -132,27 +134,31 @@ function getStatePage(url, i){
 
 function onStateResultsReturn(xhr){
 
-  for (x = 0; x < xhr.data.length;x++){ //loop through each result in the returned page
-  
-    //titleString will be applied to button on selection list. Buttons are links inside of div#breweryId
-    var titleString = (xhr.data[x].brewery.name || 'Unnamed brewery') + " (" +
-      (xhr.data[x].locality || 'Unknown locality') + ", " +
-      (xhr.data[x].locationTypeDisplay || 'Unknown location type') + ")";
-      
-      
-    var breweryId = xhr.data[x].id;
-    var row = document.createElement("a"); //setup link
-    row.rel = "external";
-    row.href = 'brews.html?id=' + breweryId;
-    row.className = "ui-btn";
-    row['data-transition'] = 'flow';
-    row.innerHTML += '<p>' + titleString + '</p>';
+  if (typeof xhr.data == 'undefined') {
+    alert('We couldn\'t find any breweries in your country.');
+  } else {
+    for (x = 0; x < xhr.data.length;x++){ //loop through each result in the returned page
+    
+      //titleString will be applied to button on selection list. Buttons are links inside of div#breweryId
+      var titleString = (xhr.data[x].brewery.name || 'Unnamed brewery') + " (" +
+        (xhr.data[x].locality || 'Unknown locality') + ", " +
+        (xhr.data[x].locationTypeDisplay || 'Unknown location type') + ")";
+        
+        
+      var breweryId = xhr.data[x].id;
+      var row = document.createElement("a"); //setup link
+      row.rel = "external";
+      row.href = 'brews.html?id=' + breweryId;
+      row.className = "ui-btn";
+      row['data-transition'] = 'flow';
+      row.innerHTML += '<p>' + titleString + '</p>';
 
-    var rowDiv = document.createElement("div"); //setup div
-    rowDiv.id = breweryId;
+      var rowDiv = document.createElement("div"); //setup div
+      rowDiv.id = breweryId;
 
-    rowDiv.appendChild(row); //add link to div, add div to page
-    document.getElementById("data").appendChild(rowDiv);
+      rowDiv.appendChild(row); //add link to div, add div to page
+      document.getElementById("data").appendChild(rowDiv);
+    }
   }
 }
 
@@ -206,30 +212,31 @@ function getCountryPage(url, i){
 
 function onCountryResultsReturn(xhr){
 
-  console.log(xhr.data.length);
-  for (x = 0; x < xhr.data.length;x++){ //loop thru each result in the returned page
-    
-    //titleString will be applied to button on selection list. Buttons are links inside of div#breweryId
-    var titleString = (xhr.data[x].brewery.name || 'Unnamed brewery') + " (" +
-      (xhr.data[x].locality || 'Unknown locality') + ", " + (xhr.data[x].region || 'Unknown region') +
-      " " + (xhr.data[x].locationTypeDisplay || 'Unknown location type') + ")";
+  if (typeof xhr.data == 'undefined') {
+    alert('We couldn\'t find any breweries in your country.');
+  } else {
+    for (x = 0; x < xhr.data.length;x++){ //loop thru each result in the returned page
       
-    var breweryId = xhr.data[x].id;
-    var row = document.createElement("a"); //setup link
-    row.rel = "external";
-    row.href = 'brews.html?id=' + breweryId;
-    row.className = "ui-btn";
-    row['data-transition'] = 'flow';
-    row.innerHTML += '<p>' + titleString + '</p>';
+      //titleString will be applied to button on selection list. Buttons are links inside of div#breweryId
+      var titleString = (xhr.data[x].brewery.name || 'Unnamed brewery') + " (" +
+        (xhr.data[x].locality || 'Unknown locality') + ", " + (xhr.data[x].region || 'Unknown region') +
+        " " + (xhr.data[x].locationTypeDisplay || 'Unknown location type') + ")";
+        
+      var breweryId = xhr.data[x].id;
+      var row = document.createElement("a"); //setup link
+      row.rel = "external";
+      row.href = 'brews.html?id=' + breweryId;
+      row.className = "ui-btn";
+      row['data-transition'] = 'flow';
+      row.innerHTML += '<p>' + titleString + '</p>';
 
-    var rowDiv = document.createElement("div"); //setup div
-    rowDiv.id = breweryId;
+      var rowDiv = document.createElement("div"); //setup div
+      rowDiv.id = breweryId;
 
-    rowDiv.appendChild(row); //add link to div, add div to page
-    document.getElementById("data").appendChild(rowDiv);
+      rowDiv.appendChild(row); //add link to div, add div to page
+      document.getElementById("data").appendChild(rowDiv);
+    }
   }
-  var pages = xhr.numberOfPages;
-  return pages;
 }
 
 function getNearResults(lat,lng,radius){
@@ -282,31 +289,32 @@ function onNearResultsReturn(xhr){
   $('#enterLocation').fadeOut(); //fade out the location selection divs
   $('#myLocation').fadeOut();
   
-  console.log(xhr.data.length);
-  for (x = 0; x < xhr.data.length;x++){ //loop thru each result in the returned page
-  
-    //titleString will be applied to button on selection list. Buttons are links inside of div#breweryId
-    var titleString = (xhr.data[x].brewery.name || 'Unnamed brewery') + " (" +
-                      (xhr.data[x].locality || '') + ", " +
-                      (xhr.data[x].locationTypeDisplay || 'Unknown location type') + ")";
+  if (typeof xhr.data == 'undefined') {
+    alert('We couldn\'t find any breweries in your country.');
+  } else {
+    for (x = 0; x < xhr.data.length;x++){ //loop thru each result in the returned page
     
-    var breweryId = xhr.data[x].id;
-    var row = document.createElement("a"); //setup link
-    row.rel = "external";
-    row.href = 'brews.html?id=' + breweryId;
-    row.className = "ui-btn";
-    row['data-transition'] = 'flow';
-    row.innerHTML += '<p>' + titleString + '</p>';
+      //titleString will be applied to button on selection list. Buttons are links inside of div#breweryId
+      var titleString = (xhr.data[x].brewery.name || 'Unnamed brewery') + " (" +
+                        (xhr.data[x].locality || '') + ", " +
+                        (xhr.data[x].locationTypeDisplay || 'Unknown location type') + ")";
+      
+      var breweryId = xhr.data[x].id;
+      var row = document.createElement("a"); //setup link
+      row.rel = "external";
+      row.href = 'brews.html?id=' + breweryId;
+      row.className = "ui-btn";
+      row['data-transition'] = 'flow';
+      row.innerHTML += '<p>' + titleString + '</p>';
 
-    var rowDiv = document.createElement("div"); //setup div
-    rowDiv.id = breweryId;
+      var rowDiv = document.createElement("div"); //setup div
+      rowDiv.id = breweryId;
 
-    rowDiv.appendChild(row); //add link to div, add div to page
-    document.getElementById("data").appendChild(rowDiv);
+      rowDiv.appendChild(row); //add link to div, add div to page
+      document.getElementById("data").appendChild(rowDiv);
+    }
+    $('#data').fadeIn(1000); //lastly, fade in the returned results
   }
-  $('#data').fadeIn(1000); //lastly, fade in the returned results
-  var pages = xhr.numberOfPages;
-  return pages;
 }
 
 function checkGets(){ //stackoverflow code, but hey it works. Used to check GET vars on the client side.
@@ -418,14 +426,8 @@ function toTitleCase(str){ //once again stolen from stackoverflow
 function addToFavorites(id){
 
   addToLocalList(id); //Save to local favorites list
-  
-  sendToAggregationServer(id); //Send breweryId to aggregation server
-}
 
-function sendToAggregationServer(id){
-
-  var notNull = "";
-  //TODO. Gotta make the server first.
+  //sendToAggregationServer(id); //Send breweryId to aggregation server
 }
 
 function addToLocalList(id){
@@ -448,10 +450,10 @@ function addToLocalList(id){
 function getFileContents(){
 
   var defaultVal = '';
-  if(localStorage.favorites){
-    return localStorage.favorites;
+  if(localStorage.getItem('favorites') != undefined){
+    return localStorage.getItem('favorites');
   } else {
-    localStorage.favorites = defaultVal;
+    localStorage.setItem('favorites',defaultVal);
     return defaultVal;
   }
 }
@@ -470,29 +472,29 @@ function exists(element,array){ //simple algorithm to check if element exists in
 function overwriteFile(file){
 
   console.log(file);
-  localStorage.favorites = file;
+  localStorage.setItem('favorites',file);
 }
 
 $( document ).on( 'pageinit', '#favoritesPage', function() {
-	onFavoritesPageInit();
+  onFavoritesPageInit();
 });
 
 function onFavoritesPageInit() {
 
-	var rawFavorites = getFileContents();
+  var rawFavorites = getFileContents();
   var favorites = rawFavorites.split(",");
   
   lookupFavorites(favorites);
 }
 
-function lookupFavorites(ids){
+function lookupFavorites(ids) {
 
   var i = 0;
-  var url = 'http://api.brewerydb.com/v2/location/' + ids[0] + "?key=" + key; //creates the first api endpoint.
-  var length = ids.length;
+  var url = 'http://api.brewerydb.com/v2/location/' + ids[0] + "?key=" + key; //creates the first api endpoint    var length = ids.length;
   var strings = [];
-  
-  lookupBreweries(length, ids, strings, i, url); //starts the recursive ajax lookup
+  if (strings.length > 0) {
+    lookupBreweries(length, ids, strings, i, url); //starts the recursive ajax lookup
+  }
 }
 
 function lookupBreweries(length, ids, strings, i, url){
@@ -508,7 +510,6 @@ function lookupBreweries(length, ids, strings, i, url){
       i++;
       if(i < length){
         url = 'http://api.brewerydb.com/v2/location/' + ids[i] + "?key=" + key;
-        console.log(url);
         lookupBreweries(length, ids, strings, i, url);
       } else {
         populateFavoritesPage(strings, ids);
@@ -516,9 +517,9 @@ function lookupBreweries(length, ids, strings, i, url){
       
     },
     error: function(xhr, status){    //runs on other (failure) statuses
-  
+      console.log(url);
       console.log(status);
-      window.alert("Something failed. Contact ghostbusters," +
+      window.alert(url + " Something failed. Contact ghostbusters," +
         " or someone else who'd know how to fix this. Status error: " + status);
       return 'error';
     }
@@ -548,4 +549,9 @@ function populateFavoritesPage(strings, ids){
   } else {
     console.log('ERROR: String array length != Id array length.');
   }
+}
+
+function clearFavorites() {
+    localStorage.setItem('favorites', '');
+    $('data').html('');
 }
