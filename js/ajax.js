@@ -492,12 +492,14 @@ function lookupFavorites(ids) {
   var i = 0;
   var url = 'http://api.brewerydb.com/v2/location/' + ids[0] + "?key=" + key; //creates the first api endpoint    var length = ids.length;
   var strings = [];
-  if (strings.length > 0) {
-    lookupBreweries(length, ids, strings, i, url); //starts the recursive ajax lookup
+  console.log(ids[0]);
+  if (ids[0] != '') {
+    lookupBreweries(ids.length, ids, strings, i, url); //starts the recursive ajax lookup
   }
 }
 
 function lookupBreweries(length, ids, strings, i, url){
+
   $.ajax({
     dataType: 'json',
     url: url,
@@ -553,5 +555,5 @@ function populateFavoritesPage(strings, ids){
 
 function clearFavorites() {
     localStorage.setItem('favorites', '');
-    $('data').html('');
+    $('#data').html('');
 }

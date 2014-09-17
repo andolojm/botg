@@ -96,6 +96,10 @@
     white-space: normal;
 }
 
+#myLocation button {
+    white-space: normal;
+}
+
 #addFavorite {
     margin: 5%;
 }
